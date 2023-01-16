@@ -54,12 +54,6 @@ namespace DesafioAPI.Controller
             return Ok(tarefa);
         }
 
-
-
-
-
-
-
         [HttpPost]
         public IActionResult Criar(Tarefa tarefa)
         {
@@ -77,71 +71,23 @@ namespace DesafioAPI.Controller
         public IActionResult Atualizar(int id, Tarefa tarefa)
         {
             var tarefaBanco = _context.Tarefas.Find(id);
+
+            if (tarefaBanco == null)
+                return NotFound();
+
+            if (tarefa.Data == DateTime.MinValue)
+                return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
+
+            tarefaBanco.Titulo = tarefa.Titulo;
+            tarefaBanco.Descricao = tarefa.Descricao;
+            tarefaBanco.Data = tarefa.Data;
+            tarefaBanco.Status = tarefa.Status;
+
+            _context.Tarefas.Update(tarefaBanco);
+            _context.SaveChanges();
+
             return Ok();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
