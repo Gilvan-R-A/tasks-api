@@ -34,6 +34,7 @@ namespace DesafioAPI.Controller
             return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
         }
 
+    [HttpPut("{id}")]
     public IActionResult Atualizar(int id, Tarefa tarefa){
             var tarefaBanco = _context.Tarefas.Find(id);
             return Ok();
