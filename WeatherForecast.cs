@@ -1,4 +1,4 @@
-namespace Desafio_C__API;
+namespace DesafioAPI;
 
 public class WeatherForecast
 {

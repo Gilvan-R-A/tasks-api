@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Desafio_C__API.Controllers;
+namespace DesafioAPI;
 
 [ApiController]
 [Route("[controller]")]

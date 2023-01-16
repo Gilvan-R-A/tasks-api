@@ -1,4 +1,4 @@
-namespace Desafio_C__API.Models
+namespace DesafioAPI
 {
     public enum EnumStatusTarefa
     {
