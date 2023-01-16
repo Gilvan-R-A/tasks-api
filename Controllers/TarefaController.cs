@@ -33,6 +33,27 @@ namespace DesafioAPI.Controller
             return Ok(tarefas);
         }
 
+        [HttpGet("ObterPorTitulo")]
+        public IActionResult ObterPorTitulo(string titulo)
+        {
+            var tarefa = _context.Tarefas.Where(x => x.Titulo == titulo);
+            return Ok(tarefa);
+        }
+
+
+
+
+        [HttpGet("ObterPorData")]
+        public IActionResult ObterPorData(DateTime data)
+        {
+            var tarefa = _context.Tarefas.Where(x => x.Data.Date == data.Date);
+            return Ok(tarefa);
+        }
+
+
+
+
+
 
 
 
@@ -40,6 +61,7 @@ namespace DesafioAPI.Controller
         [HttpPost]
         public IActionResult Criar(Tarefa tarefa)
         {
+
             if (tarefa.Data == DateTime.MinValue)
                 return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
 

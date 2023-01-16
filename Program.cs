@@ -1,6 +1,9 @@
 using System.Text.Json.Serialization;
 using DesafioAPI;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
 
 var builder = WebApplication.CreateBuilder(args);
 
