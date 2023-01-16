@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gilva\\Desktop\\Desafio-C#-API\\Desafio-C#-API.csproj": {}
+    "C:\\Users\\gilva\\Desktop\\DesafioAPI\\Desafio-C#-API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gilva\\Desktop\\Desafio-C#-API\\Desafio-C#-API.csproj": {
+    "C:\\Users\\gilva\\Desktop\\DesafioAPI\\Desafio-C#-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gilva\\Desktop\\Desafio-C#-API\\Desafio-C#-API.csproj",
+        "projectUniqueName": "C:\\Users\\gilva\\Desktop\\DesafioAPI\\Desafio-C#-API.csproj",
         "projectName": "Desafio-C#-API",
-        "projectPath": "C:\\Users\\gilva\\Desktop\\Desafio-C#-API\\Desafio-C#-API.csproj",
+        "projectPath": "C:\\Users\\gilva\\Desktop\\DesafioAPI\\Desafio-C#-API.csproj",
         "packagesPath": "C:\\Users\\gilva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gilva\\Desktop\\Desafio-C#-API\\obj\\",
+        "outputPath": "C:\\Users\\gilva\\Desktop\\DesafioAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gilva\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -51,6 +51,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
