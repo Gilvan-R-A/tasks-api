@@ -40,9 +40,6 @@ namespace DesafioAPI.Controller
             return Ok(tarefa);
         }
 
-
-
-
         [HttpGet("ObterPorData")]
         public IActionResult ObterPorData(DateTime data)
         {
@@ -50,7 +47,12 @@ namespace DesafioAPI.Controller
             return Ok(tarefa);
         }
 
-
+        [HttpGet("ObterPorStatus")]
+        public IActionResult ObterPorStatus(EnumStatusTarefa status)
+        {
+            var tarefa = _context.Tarefas.Where(x => x.Status == status);
+            return Ok(tarefa);
+        }
 
 
 
