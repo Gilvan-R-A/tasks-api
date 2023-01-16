@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesafioAPI.Controller
-{   
+{
     [ApiController]
     [Route("[controller]")]
     public class TarefaController : ControllerBase
@@ -17,29 +17,41 @@ namespace DesafioAPI.Controller
             _context = context;
         }
 
-    [HttpGet("{id}")]
-    public IActionResult ObterPorId(int id){
+        [HttpGet("{id}")]
+        public IActionResult ObterPorId(int id)
+        {
             var tarefa = _context.Tarefas.Find(id);
-            if(tarefa == null)
+            if (tarefa == null)
                 return NotFound();
             return Ok(tarefa);
         }
 
+        [HttpGet("ObterTodos")]
+        public IActionResult ObterTodos()
+        {
+            var tarefas = _context.Tarefas;
+            return Ok(tarefas);
+        }
 
-    [HttpPost]
-    public IActionResult Criar(Tarefa tarefa)
-    {
-        if(tarefa.Data == DateTime.MinValue)
+
+
+
+
+        [HttpPost]
+        public IActionResult Criar(Tarefa tarefa)
+        {
+            if (tarefa.Data == DateTime.MinValue)
                 return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
 
             _context.Add(tarefa);
             _context.SaveChanges();
 
             return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
-    }
+        }
 
-    [HttpPut("{id}")]
-    public IActionResult Atualizar(int id, Tarefa tarefa){
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, Tarefa tarefa)
+        {
             var tarefaBanco = _context.Tarefas.Find(id);
             return Ok();
         }
