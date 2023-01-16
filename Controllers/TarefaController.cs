@@ -24,7 +24,8 @@ namespace DesafioAPI.Controller
 
 
     [HttpPost]
-    public IActionResult Criar(Tarefa tarefa){
+    public IActionResult Criar(Tarefa tarefa)
+    {
         if(tarefa.Data == DateTime.MinValue)
                 return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
 
@@ -32,7 +33,7 @@ namespace DesafioAPI.Controller
             _context.SaveChanges();
 
             return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
-        }
+    }
 
     [HttpPut("{id}")]
     public IActionResult Atualizar(int id, Tarefa tarefa){
