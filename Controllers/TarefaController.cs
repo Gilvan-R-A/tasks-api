@@ -19,7 +19,10 @@ namespace DesafioAPI.Controller
 
     [HttpGet("{id}")]
     public IActionResult ObterPorId(int id){
-            return Ok();
+            var tarefa = _context.Tarefas.Find(id);
+            if(tarefa == null)
+                return NotFound();
+            return Ok(tarefa);
         }
 
 
