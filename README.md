@@ -1,54 +1,186 @@
-# Tasks_API - .NET e Entity Framework
-www.dio.me
+<h1 align="center">
+   API de Tarefas
+</h1>   
 
-## Desafio de projeto
-Desafio de projeto onde são aplicados os conhecimentos adquiridos no módulo de **API** e **Entity Framework**, da trilha **.NET** da DIO.
+## Descrição   
 
-## Contexto
-Você precisa construir um sistema gerenciador de tarefas, onde você poderá cadastrar uma lista de tarefas que permitirá organizar melhor a sua rotina.
+Este projeto é uma API desenvolvida em **C#** utilizando **ASP.NET Core**, com **Entity Framework Core**, para gerenciar tarefas. A API permite criar, listar, atualizar e excluir tarefas, com informações como título, descrição, data de criação e status. A aplicação foi configurada para usar o banco de dados **SQL Server**.   
 
-Essa lista de tarefas precisa ter um **CRUD**, ou seja, deverá permitir a você obter os registros, criar, salvar e deletar esses registros.
+## Tecnologias Utilizadas   
 
-A sua aplicação deverá ser do tipo **Web API** ou **MVC**, fique a vontade para implementar a solução que achar mais adequado.
+- **ASP.NET Core** (Framework para criação da API)
+- **Entity Framework Core** (ORM para manipulação de dados)
+- **SQL Server** (Banco de Dados)
+- **Swagger** (Documentação interativa da API)   
 
-A sua classe principal, a classe de tarefa, deve ser a seguinte:
+## Estrutura do Projeto   
 
-![Diagrama da classe Tarefa](diagrama.png)
+O projeto está organizado da seguinte forma:   
 
-Não se esqueça de gerar a sua migration para atualização no banco de dados.
+```   
+tasks-api/
+│
+├── Controllers/                 # Controladores da API
+│   └── TarefasController.cs
+│
+├── Migrations/                  # Arquivos de migração do Entity Framework
+│   ├── CriacaoTabelaTarefa.cs
+│   ├── AdicionaPropriedadeDescricaoNaTabela.cs
+│   └── ...
+│
+├── Models/                      # Modelos de dados
+│   ├── EnumStatusTarefa.cs
+│   └── Tarefa.cs
+│
+├── Properties/                  # Arquivos de configuração do projeto
+│   ├── launchSettings.json
+│   └── ...
+│
+├── appsettings.json             # Configurações do ambiente
+├── appsettings.Development.json # Configurações específicas para o ambiente de desenvolvimento
+├── Program.cs                   # Inicialização e configuração da aplicação
+├── Desafio-C#-API.csproj        # Arquivo de projeto do .NET
+└── README.md                    # Documentação do projeto
+```   
 
-## Métodos esperados
-É esperado que você crie o seus métodos conforme a seguir:
+## Funcionalidades da API   
 
+**Endpoints**   
 
-**Swagger**
+**1. GET /tarefas**  
 
+   - **Descrição:** Lista todas as tarefas.   
+   - **Resposta:** Um array de tarefas.   
 
-![Métodos Swagger](swagger.png)
+**2. GET /tarefas/{id}**   
 
+   - **Descrição:** Retorna uma tarefa espedífica.   
+   - **Parâmetros:**   
+      - **id**: O ID da tarefa.   
 
-**Endpoints**
+**3. POST /tarefas**   
 
+   - **Descrição:** Cria uma nova tarefa.   
+   - **Corpo da Requisição:**   
 
-| Verbo  | Endpoint                | Parâmetro | Body          |
-|--------|-------------------------|-----------|---------------|
-| GET    | /Tarefa/{id}            | id        | N/A           |
-| PUT    | /Tarefa/{id}            | id        | Schema Tarefa |
-| DELETE | /Tarefa/{id}            | id        | N/A           |
-| GET    | /Tarefa/ObterTodos      | N/A       | N/A           |
-| GET    | /Tarefa/ObterPorTitulo  | titulo    | N/A           |
-| GET    | /Tarefa/ObterPorData    | data      | N/A           |
-| GET    | /Tarefa/ObterPorStatus  | status    | N/A           |
-| POST   | /Tarefa                 | N/A       | Schema Tarefa |
-
-Esse é o schema (model) de Tarefa, utilizado para passar para os métodos que exigirem
-
-```json
+```   
 {
-  "id": 0,
-  "titulo": "string",
-  "descricao": "string",
-  "data": "2022-06-08T01:31:07.056Z",
+  "titulo": "Título da tarefa",
+  "descricao": "Descrição da tarefa",
+  "data": "2025-01-01T00:00:00",
   "status": "Pendente"
 }
+```   
+
+**4. PUT /tarefas/{id}**   
+
+   - **Descrição:** Atualiza os dados de uma tarefa existente.   
+   - **Parâmetros:**   
+      - **id**: O ID da tarefa.   
+
+   - **Corpo da Requisição:**   
+
+```   
+{
+  "titulo": "Novo título da tarefa",
+  "descricao": "Nova descrição",
+  "data": "2025-01-02T00:00:00",
+  "status": "Finalizado"
+}
+```   
+
+**5. DELETE /tarefas/{id}**   
+
+   - **Descrição:** Exclui uma tarefa.   
+   - **Parâmetros:**   
+      - **id**: O ID da tarefa.   
+
+
+## Modelos de Dados   
+
+- **Tarefa:**   
+
+```   
+public class Tarefa
+{
+    public int Id { get; set; } 
+    public string Titulo { get; set; }
+    public string Descricao { get; set; }
+    public DateTime Data { get; set;}
+    public EnumStatusTarefa Status { get; set; }
+}
+```   
+
+- **EnumStatusTarefa:**   
+
+```   
+public enum EnumStatusTarefa
+{
+    Pendente,
+    Finalizado
+}
+```   
+
+## Como Rodar o Projeto   
+
+**Requisitos**   
+
+- .NET 7.0 ou superior
+- SQL Server
+
+**Passos para Rodar**   
+
+1. Clone o repositório do projeto:   
+
+```   
+git clone https://github.com/Gilvan-R-A/tasks-api.git
 ```
+
+2. Navegue até o diretório do projeto:   
+
+```   
+cd tasks-api
+```   
+
+3. Restaure as dependências:   
+
+```   
+dotnet restore
+```   
+
+4. Configure a string de conexão no arquivo **appsettings.Development.json** para o banco de dados:   
+
+```   
+"ConnectionStrings": {
+  "ConexaoPadrao": "Server=localhost\\sqlexpress; Initial Catalog=Organizador; Integrated Security=True; TrustServerCertificate=True"
+}
+```   
+
+5. Execute as migrações para criar o banco de dados:   
+
+```   
+dotnet ef database update
+```   
+
+6. Execute a aplicação:   
+
+```   
+dotnet run
+```   
+
+7. Acesse a API em **http://localhost:5000** e visualize a documentação no Swagger em **http://localhost:5000/swagger**   
+
+
+## Testes   
+
+Os testes podem ser realizados utilizando o Swagger UI ou por meio de ferramentas como Postman ou curl para interagir com os endpoints.   
+
+## Contribuição   
+
+1. Faça um fork do repositório.
+2. Crie uma nova branch: git checkout -b minha-feature.
+3. Faça as alterações desejadas e adicione os arquivos alterados: git add ..
+4. Commit as alterações: git commit -m 'Adiciona nova funcionalidade'.
+5. Envie para o repositório: git push origin minha-feature.
+6. Abra um Pull Request.
+
